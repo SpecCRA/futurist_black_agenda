@@ -1,0 +1,1 @@
+# Jan 2020 Futurist Issue: Infographics for the Black Agenda
