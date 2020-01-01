@@ -1,0 +1,8 @@
+﻿race,median_value_assets,std_error_value,median_debt,std_error_debt
+White alone,114700,3874,66600,102000
+"White alone, not Hispanic",143600,3988,72600,86190
+Black alone,12920,2414,34500,16920
+Asian alone,210100,20070,107000,6727
+Other (residual),20140,5951,42000,3970
+Hispanic origin (any race),21420,3182,36000,17560
+Not of Hispanic origin,111800,2820,65000,112100
