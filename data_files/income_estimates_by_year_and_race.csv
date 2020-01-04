@@ -1,4 +1,4 @@
-﻿race,year,median_income,std_median_income,mean_income,std_mean_income
+race,year,median_income,std_median_income,mean_income,std_mean_income
 all_races,2018,63179,420,90021,546
 all_races,2017,62626,330,89779,584
 all_races,2016,61779,456,87001,491
@@ -103,7 +103,7 @@ white_alone,1970,52646,203,59903,197
 white_alone,1969,53163,194,60103,200
 white_alone,1968,51138,190,57563,190
 white_alone,1967,49102,178,54587,185
-white_alone_not_hispanic,C,70642,396,98261,711
+white_alone_not_hispanic,2018,70642,396,98261,711
 white_alone_not_hispanic,2017,69851,690,98093,723
 white_alone_not_hispanic,2016,68059,534,93922,637
 white_alone_not_hispanic,2015,66721,574,90712,563
