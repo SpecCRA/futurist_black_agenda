@@ -1,19 +1,21 @@
 async function drawPlots() {
 	// Access data
-	let income_data = await d3.csv('./income_diffs.csv', d3.autoType)
+	let income_data = await d3.csv('./income_diffs.csv')
 
-	console.log(income_data[0])
-	const dateAccessor = d => d.year
-	const whiteAccessor = d => d.white_diff
-	const blackAccessor = d => d.black_diff
-	const hispanicAccessor = d => d.hispanic_diff
+    // console.log(income_data[0])
+    const dateParser = d3.timeParse('%Y')
+	const dateAccessor = d => dateParser(d.year)
+	const whiteAccessor = d => +d.white_diff 
+	const blackAccessor = d => +d.black_diff
+	const hispanicAccessor = d => +d.hispanic_diff
 
 	let maxPoint = whiteAccessor(_.maxBy(income_data, whiteAccessor))
 	let minPoint = blackAccessor(_.minBy(income_data, blackAccessor))
 	let minPoint2 = _.minBy(income_data, hispanicAccessor)
 
-	console.log(minPoint)
-	console.log(maxPoint)
+    // console.log(minPoint)
+    // console.log("max point")
+	// console.log(maxPoint)
 	// console.log(minPoint2)
 
 	// Chart Dimensions
@@ -22,7 +24,7 @@ async function drawPlots() {
 		width: width,
 		height: width * 0.6,
 		margin: {
-			top: 30,
+			top: 35,
 			right: 80,
 			bottom: 50,
 			left: 50,
@@ -52,7 +54,7 @@ async function drawPlots() {
 
 	// Create Scales
 	
-	const xScale = d3.scaleLinear()
+	const xScale = d3.scaleTime()
 		.domain(d3.extent(income_data, dateAccessor))
 		.range([0, dimensions.boundedWidth])
         
@@ -68,9 +70,9 @@ async function drawPlots() {
         .attr('width', dimensions.boundedWidth)
         .attr('y', belowAvgPlacement)
         .attr('height', dimensions.boundedHeight - belowAvgPlacement)
-        .attr('fill', '#c2c2c2')
+        .attr('fill', '#d9d9d9')
 
-    // // Draw Lines
+    // Draw Lines
     // const lineGenerator = d3.line()
     //     .x(d => xScale(dateAccessor(d)))
     //     .y(d => yScale(whiteAccessor(d)))
@@ -84,8 +86,9 @@ async function drawPlots() {
     //     .attr('stroke-width', 2)
     
     const drawLines = race => {
-        const raceAccessor = d => d[race]
-        const xAccessor = d => d.year
+        const raceAccessor = d => +d[race]
+        const dateParser = d3.timeParse("%Y")
+        const xAccessor = d => dateParser(d.year)
             
         const lineGenerator = d3.line()
             .x(d => xScale(xAccessor(d)))
@@ -107,8 +110,27 @@ async function drawPlots() {
     metrics.forEach(drawLines)
 
     // Draw Axes
+    
+    const yAxisGenerator = d3.axisLeft()
+        .scale(yScale)
+        .tickFormat(d3.format('.0s'))
+        .ticks(5)
+    
+    const yAxis = bounds.append('g')
+        .call(yAxisGenerator)
 
-    // Annotate each line
+    const xAxisGenerator = d3.axisBottom()
+        .scale(xScale)
+        .ticks(5)
+    
+    const xAxis = bounds.append('g')
+        .call(xAxisGenerator)
+            .style('transform', `translateY(${
+                dimensions.boundedHeight
+            }px)`)
+
+    // Annotations amd Title
+    
     
 }
 drawPlots()
