@@ -1,8 +1,8 @@
-,race,median_perc_income_of_white
-0,White alone,0.7987465181058496
-1,"White alone, not Hispanic",1.0
-2,Black alone,0.08997214484679665
-3,Asian alone,1.463091922005571
-4,Other (residual),0.1402506963788301
-5,Hispanic origin (any race),0.14916434540389972
-6,Not of Hispanic origin,0.7785515320334262
+,race,median_perc_wealth_of_white,perc_values
+0,white_alone,0.798746518,79.87465181
+1,white_alone_not_hispanic,1,100
+2,black_alone,0.089972145,8.997214485
+3,asian_alone,1.463091922,146.3091922
+4,other_residual,0.140250696,14.02506964
+5,hispanic,0.149164345,14.91643454
+6,not_hispanic,0.778551532,77.8551532
